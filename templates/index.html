@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h5 class="text text-muted text-center">
+	Auto Data Fetched After <strong class="text-danger">Remaining Time (MM:SS)
+		<p  id="timer" class="fs-1 m-3">
+		</p>
+		</strong>
+</h5>
+{% if pro %}
+{% for pr in pro %}
+	{% comment %} <br>
+	{{pr.id}}
+	<br>
+	{{pr.dealTitle }}
+	<br>
+	{{pr.dealInfo }}
+	<br>
+	{{pr.price }}
+	<br>
+	{{pr.store }}
+	<br>
+	{{pr.ratingNum }}
+	<br>
+	{{pr.activityCol }}
+	<br>
+	{{pr.lastPostCol }}
+	<br>
+	{{pr.dealImg }}
+	<br>
+	{{pr.dealLink }}
+	<br>
+	{{pr.dealPostLink }}
+	<br> {% endcomment %}
+
+
+  	<div class="card my-3 mb-5 p-3 shadow position-relative">
+	  <span  class="position-absolute top-0 end-10 translate-middle badge rounded-pill bg-danger fs-5">
+	  {{pr.id}}
+	  </span>
+
+      <div class="row no-gutters">
+        
+        <div class="col-md-2 p-4">
+          <a href="{{pr.dealLink }}" target="_blank" class="card-link">
+            <img src="{{pr.dealImg }}" class="bd-placeholder-img card-img-top shadow border rounded" width="100%" height="100%" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+          </a>
+        </div>
+
+        <div class="col-md-10">
+          <div class="card-body fs-6 fw-bold">
+            <a href="{{pr.dealLink }}" target="_blank" class="card-link link-primary text-decoration-none">
+              <h5 class="card-title fs-3">
+                {{pr.dealTitle }}
+              </h5>
+            </a>
+            <small class="card-text text-muted fs-5">
+              {{pr.dealInfo }}
+            </small>
+            <ul class="list-group  list-group-horizontal  py-3">
+              <li class="list-group-item ">
+                Price:<br>
+                <small class="text-muted">{{pr.price }}</small><br>
+            </li>
+              <li class="list-group-item">
+                Store:<br>
+                <small class="text-muted">{{pr.store }}</small>
+              </li>
+              <li class="list-group-item">
+                Rating:<br>
+                <small class="text-muted">{{pr.ratingNum }}</small>
+              </li>
+              <li class="list-group-item">
+                Activity:<br>
+                <small class="text-muted">{{pr.activityCol }}</small>
+              </li>
+              <li class="list-group-item">
+                User Post Link:<br>
+                <small class="text-muted">
+                  <a href="{{pr.dealPostLink }}" target="_blank"	 class="card-link">Click Here</a>
+                </small>
+              </li>
+              <li class="list-group-item">
+                New Reply:<br>
+                <small class="text-muted">
+                  {{pr.lastPostCol }}
+                </small>
+              </li>
+            </ul>           
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endfor %}
+
+{% else %} 
+	<p class="text">
+		Deals Not Fetched!!<strong class="text-danger"> (DB Problem)</strong>
+	</p>
+{% endif %}
+
+{% endblock content %}
